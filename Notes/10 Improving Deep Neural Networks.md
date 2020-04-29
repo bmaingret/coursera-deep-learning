@@ -267,7 +267,6 @@ Manual decay: just set it manually
 First:
 * learning rate
 
-Second:
 * beta for momentum GD
 * #hidden units
 * #mini-batch size
@@ -288,8 +287,53 @@ It can also be used when searching beta between 0.9 and 0.999 by searching over 
 
 ### B. Batch normalization
 
+In deeper network we might want to normalize activation outputs so ease learning of the weights of the innner layers.
 
-### C. Multi-class classification
+Normalization can be done on Z or on A. Here we look at normalizing Z.
+
+<img src="https://render.githubusercontent.com/render/math?math=z_{norm}^{(i)}=\frac{z^{(i)}-\mu}{\sqrt{\sigma^{2}%2B\epsilon}}">
+
+To be able to chose what you Z distributions are (for instance depending on the activation function), we can use:
+
+<img src="https://render.githubusercontent.com/render/math?math=\tilde{z}^{(i)}=\gamma*z_{norm}^{(i)}%2B\beta">
+
+This add two additional parameters per layer, <img src="https://render.githubusercontent.com/render/math?math=\gamma^{[l]}"> and <img src="https://render.githubusercontent.com/render/math?math=\beta^{[l]}">, that needs to pe upgraded during backprop (works with GD, GD w/ momentum, Adam).
+
+When using batch norm, the b parameters get cancelled out, and get sort of replaced by beta.
+
+**Covariate shift**
+
+If the function to learn stay the sam, but that the data may no be representative of the whole feature space, and ends up shifting inside, the learn parameters might not do as well.
+
+This can also applies inside of the NN, where when we update the weight or the previous layer, it may shift the distribution of the input for the following layer. Batch normalization reduces this shift, and sort of reducing the coupling between layers.
+
+**Regularization effect (as a remark)**
+
+Since mean/variance are computed only on mini-batches, it adds some noise to the values and acts a bit like some (small) regularization (depending on the batch size).
+
+**Batch normalization at test time**
+
+We may have only one example at test time and thus not a complete mini-batch to compute mean and variance.
+
+We use an estimate: exp. weighted average across mini-batches
 
 
-### D. Introduction to programming frameworks
+### C. Multi-class classification / Softmax regression
+
+Softmax activation function:
+1. <img src="https://render.githubusercontent.com/render/math?math=t=e^{z^{[L]}}">
+2. <img src="https://render.githubusercontent.com/render/math?math=a^{L}=\frac{t}{\sum_{j=i}^{C}t_{j}}">
+
+With C being the number of classes (size of the output layer L)
+
+N.B. this softmax version takes a vector and outputs a same shape vector.
+
+*softmax* opposes to *hard max* that would put 1 for the maximum and 0 for the rest.
+
+If C=2, softmax reduces to logistic regression.
+
+**Loss function**
+
+<img src="https://render.githubusercontent.com/render/math?math=$L(\hat{y}, y) = - \sum_{j=1}^{C} y_j*log(\hat{y}_j)">
+
+Init of backpropagation: <img src="https://render.githubusercontent.com/render/math?math=dz^{[L]}=\hat y-y">
