@@ -59,8 +59,8 @@ Not using squared error because the problem would become non convex.
 
 Loss function on a single sample vs cost function on the entire set.
 
-* Loss function: $L(\hat{y}, y) = - (y*log(\hat{y}) + (1-y)*log(1-\hat{y}))$
-* Cost function: $J(w, b) = - \frac{1}{m} * \sum\limits_{i} Loss$ ( this comes from taking the log of the product of the probabilities that tranforms into the sum of probabilities)
+* Loss function: <img src="https://render.githubusercontent.com/render/math?math=L(\hat{y}, y) = - (y*log(\hat{y}) + (1-y)*log(1-\hat{y}))">
+* Cost function: <img src="https://render.githubusercontent.com/render/math?math=J(w, b) = - \frac{1}{m} * \sum_{i} Loss"> ( this comes from taking the log of the product of the probabilities that tranforms into the sum of probabilities)
 
 
 #### 2. Gradient descent
