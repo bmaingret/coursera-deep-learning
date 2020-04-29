@@ -1,5 +1,24 @@
 # Neural Networks and Deep Learning
 
+- [Neural Networks and Deep Learning](#neural-networks-and-deep-learning)
+  - [Week 1 - Introduction to Deep Learning](#week-1---introduction-to-deep-learning)
+    - [A. What is a neural network?](#a-what-is-a-neural-network)
+    - [B. Why is Deep Learning taking off?](#b-why-is-deep-learning-taking-off)
+  - [Week 2 - Neural Networks Basics](#week-2---neural-networks-basics)
+    - [A. Binary classification (Logistic regression)](#a-binary-classification-logistic-regression)
+      - [1. Loss function](#1-loss-function)
+      - [2. Gradient descent](#2-gradient-descent)
+  - [Week 3 - Shallow neural networks](#week-3---shallow-neural-networks)
+    - [A. Neural network representation](#a-neural-network-representation)
+    - [B. Activation functions](#b-activation-functions)
+    - [C. Derivative of activation functions](#c-derivative-of-activation-functions)
+    - [D.Initialization](#dinitialization)
+    - [Recap](#recap)
+  - [Week 4 - Deep Neural Networks](#week-4---deep-neural-networks)
+    - [A. Forward propagation](#a-forward-propagation)
+    - [B. Backpropagation](#b-backpropagation)
+    - [C. Hyperparameters](#c-hyperparameters)
+
 ## Week 1 - Introduction to Deep Learning
 
 ### A. What is a neural network?
@@ -40,8 +59,8 @@ Not using squared error because the problem would become non convex.
 
 Loss function on a single sample vs cost function on the entire set.
 
-Loss function: L(^y, y) = - (y*log(^y) + (1-y)*log(1-^y))
-Cost function: J(w, b) = - 1/m * sum for i of Loss ( this comes from taking the log of the product of the probabilities that tranforms into the sum of probabilities)
+* Loss function: $L(\hat{y}, y) = - (y*log(\hat{y}) + (1-y)*log(1-\hat{y}))$
+* Cost function: $J(w, b) = - \frac{1}{m} * \sum\limits_{i} Loss$ ( this comes from taking the log of the product of the probabilities that tranforms into the sum of probabilities)
 
 
 #### 2. Gradient descent
