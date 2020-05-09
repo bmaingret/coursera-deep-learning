@@ -1,5 +1,37 @@
 # Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
 
+- [Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization](#improving-deep-neural-networks-hyperparameter-tuning-regularization-and-optimization)
+  - [Week 1 - Practical aspects of Deep Learning](#week-1---practical-aspects-of-deep-learning)
+    - [A. Setting up your ML application](#a-setting-up-your-ml-application)
+      - [1. Train/Dev/Test sets](#1-traindevtest-sets)
+      - [2. Bias/Variance](#2-biasvariance)
+      - [3.Basic recipe for ML](#3basic-recipe-for-ml)
+    - [B. Regularizing your NN](#b-regularizing-your-nn)
+      - [1. Logistic regression regularization](#1-logistic-regression-regularization)
+      - [2. Neural Network *L2* regularization](#2-neural-network-l2-regularization)
+      - [3. Dropout regularization](#3-dropout-regularization)
+      - [4. Other regularization methods](#4-other-regularization-methods)
+    - [C. Setting up your optimization problem](#c-setting-up-your-optimization-problem)
+      - [1. Normalizing inputs](#1-normalizing-inputs)
+      - [2. Vanishing/Exploding gradients](#2-vanishingexploding-gradients)
+      - [3. Weight init in DNN](#3-weight-init-in-dnn)
+      - [4. Numerical approximation of gradients](#4-numerical-approximation-of-gradients)
+      - [5. Gradient checking](#5-gradient-checking)
+  - [Week 2 - Optimization algorithms](#week-2---optimization-algorithms)
+    - [A. Mini-batch gradient descent](#a-mini-batch-gradient-descent)
+    - [B. Exponentially weighted averages](#b-exponentially-weighted-averages)
+    - [C.Gradient descent with momentum](#cgradient-descent-with-momentum)
+    - [D.RMSprop (Root Mean Square Propa)](#drmsprop-root-mean-square-propa)
+    - [E. Adam optimization algorithm (ADAptive Moment estimation)](#e-adam-optimization-algorithm-adaptive-moment-estimation)
+    - [E. Local optima in NN](#e-local-optima-in-nn)
+    - [F. Learning rate decay](#f-learning-rate-decay)
+  - [Week 3 - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization](#week-3---improving-deep-neural-networks-hyperparameter-tuning-regularization-and-optimization)
+    - [A. Hyperparameter tuning](#a-hyperparameter-tuning)
+      - [1. Tuning process](#1-tuning-process)
+      - [2. Scale for hyperparameters](#2-scale-for-hyperparameters)
+    - [B. Batch normalization](#b-batch-normalization)
+    - [C. Multi-class classification / Softmax regression](#c-multi-class-classification--softmax-regression)
+
 ## Week 1 - Practical aspects of Deep Learning
 
 ### A. Setting up your ML application

@@ -1,69 +1,165 @@
-# Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+# Convolutional Neural Networks
 
-## Week 1 - Practical aspects of Deep Learning
+## Week 1 - Computer Vision
 
-### Setting up your ML application
+### Idea
 
-#### Train/Dev/Test sets
+The large dimension of the input space when using images requires new algorithms.
 
-**Ratios**
+Convolute the matrix with a specific filter to detect features.
 
-Usually: 70/30 or 60/20/20
+The idea behind CNN is to treat the filter as parameters to learn.
 
-But with DL usually data set are larger. For instance with 1M examples, could be 98/1/1, or even 99.5/0.4/0.1
+Technically what is usually called convolution in DL is a cross-correlation.
+
+### Padding
+
+(n*n) matrix convoluted with a (f*f) matrix gives a (n-f+1, n-f+1)
+
+Two issues:
+
+* shrinks the image
+* throw away information from the edge
+
+Pad the image with p leading to: (n+p*n+p) matrix convoluted with a (f*f) matrix gives a (n+p-f+1, n+p-f+1).  With n=6, f=4, p=1, your end result would be (6,6).
+
+**Valid convolutions**: no padding
+**Same convolutions**: padding to keep the same input size for output size (p=(f-1)/2)
+
+Usually f is an odd number:
+
+* issue with padding
+* allow for a central pixel
+
+### Strided convolution
+
+Isntead of moving the filter by 1 step, you move it by a specific stride
+
+(n,n) conv (f, f), with padding p and stride s, floor of ( (n+2p-f)/s +1, (n+2p-f)/s +1 )
+
+### Convolutions over volume
+
+Image: heigth*width*#channels (=depth)
+
+Filter has the same number of channels
+
+### Multiple filters
+
+Stack the output of convolution with each other (similarly to adding channels).
+
+### One layer of CNN
+
+1. Convolution between input and filters (similar to W*A)
+2. Add bias (similar to + B)
+3. Activation function (similar to relu(WA+B)) -> also stacks together the output of the different filters
+
+**Number of parameters:** 10 filters, (3,3,3) -> (3*3*3+1)*10=280
+
+Note that it doesn't not depends on the input feature space dimension
+
+**Notations**
+* filter size: <img src="https://render.githubusercontent.com/render/math?math=f^{[l]}">
+* padding: <img src="https://render.githubusercontent.com/render/math?math=p^{[l]}">
+* stride: <img src="https://render.githubusercontent.com/render/math?math=s^{[l]}">
+* inputdimensino: <img src="https://render.githubusercontent.com/render/math?math=n_H^{[l-1]}*n_W^{[l-1]}*n_C^{[l-1]}">
+* output dimension: <img src="https://render.githubusercontent.com/render/math?math=n_H^{[l]}*n_W^{[l]}*n_C^{[l]}">
+* filter dimension: <img src="https://render.githubusercontent.com/render/math?math=$f^{[l]}*f^{[l]}*n_C^{[l*1]}$">
+* activations: <img src="https://render.githubusercontent.com/render/math?math=$a^{[l]} (n_H^{[l]}, n_W^{[l]}, n_C^{[l]})$">
+* weights dimension: <img src="https://render.githubusercontent.com/render/math?math=$(f^{[l]}*f^{[l]}*n_C^{[l-1]})*n_C^{[l]}$">
+* bias dimension: <img src="https://render.githubusercontent.com/render/math?math=$n_C^{[l]}$">
+
+### Pooling layers (POOL)
+
+* Max pooling: apply a filter taking the max of the values. 
+* Average pooling: apply a filter taking the average of the values. 
+
+Hyperparameters:
+
+* filter size
+* stride
+* usually no padding
+Note that there is no parameters to learn during backpropagation.
+
+Can be applied independently on each channel if multiple channels.
+
+### Full CNN overview
+
+Usually one CONV+POOL is considered as 1 layer (especially since POOL has no parameters t be learned)
+
+For the output of the CNN, consolidate the last POOL output into one vector and add fully connected layer (FC)
+
+## Week 2 - Case studies
+
+### Classic networks
+#### LeNet - 5
+
+Simple network, we would use MAX pooling instead now and ReLu.
+
+![](note_images/lenet5.png)
+
+[Gradient-Based Learning Applied to Document Recognition](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf)
 
 
-**Mismatched train/test distribution**
+#### AlexNet
 
-Make sure examples come from the same distribution. For instance issues can occur training on images taken from website versus photos from smartphone camera.
+Similar to LeNet but much bigger and use ReLu
 
-**No test sets**
+![](note_images/alexnet.png)
 
-Can be OK to have only a dev set
-
-#### Bias/Variance
-
-Compare train and dev set errors, taking into account the optimal (Bayes) error.
-
-#### Basic recipe for ML
-
-**High Bias**:
-
-* Bigger Networks
-* Train longer
-* (different NN architecture)
-
-**High variance**:
-
-* More data
-* Regularization
-* (different NN architecture)
+[ImageNet Classification with Deep Convolutional Neural Networks](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)
 
 
+#### VGG-16
+
+Simple layers with regular parameters but huge network.
+
+![](note_images/vgg16.png)
+
+[ImageNet Classification with Deep Convolutional Neural Networks](https://arxiv.org/pdf/1409.1556.pdf)
+
+### ResNets
+
+![](note_images/resnet.png)
+
+[ImageNet Classification with Deep Convolutional Neural Networks](https://arxiv.org/pdf/1512.03385.pdf)
+
+### Inception network
+
+1x1 convolution layer allows to decrease or keep the same number of channels.
+
+[Going Deeper with Convolutions](https://arxiv.org/pdf/1409.4842.pdf)
+
+Apply multiple layers after one layer and stack them together/
+
+Issue: computation cost -> use 1x1 conv to reduce number of channels
+
+**Inception module**
+
+![](note_images/inception-module.png)
+
+**Inception network**
+
+Multiple inception modules, with intermediate output branch with softmax to ensure that even intermediate layers are learning, and additional max pool layers to adapt layer size.
 
 
-### Regularizing your NN
+### Transfer learning
 
-#### Dropout regularization
+You save the internal layer to disk and remove the last layers. You can chose where to put the line between what you keep and what you will retrain.
 
-#### Other regularizations
+Also possible to use it only as a weight initialization.
 
-### Setting up your optimiation problem
+### Data augmentation
 
-#### Normalizing inputs
+Stay careful not to overfit your data.
 
-#### Vanishing/Exploding gradients
+Image augmentation:
 
-#### Weight init in DNN
+* PCA color augmentation
+* Color shift
+* Rotation
+* Flip
+* Crop
 
-#### Numerical approximation of gradients
+Implementation remarks:
 
-#### Gradient checking
-
-## Week 2 - Optimization algorithms
-
-### 
-
-## Week 3 - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
-
-### 
+* Have different threads doing the distorsions and training when you cannot store the augmented data

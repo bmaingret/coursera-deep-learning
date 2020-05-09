@@ -1,5 +1,20 @@
 # Structuring Machine Learning Projects
 
+- [Structuring Machine Learning Projects](#structuring-machine-learning-projects)
+  - [A. Orthogonalization](#a-orthogonalization)
+  - [B. Setting up your goal](#b-setting-up-your-goal)
+    - [Single evaluation metric and satisficing metric](#single-evaluation-metric-and-satisficing-metric)
+    - [Dev/Test set](#devtest-set)
+  - [C. Comparing to human-level performance](#c-comparing-to-human-level-performance)
+  - [D. Error Analysis](#d-error-analysis)
+  - [E. Mismatched training and dev/test set](#e-mismatched-training-and-devtest-set)
+    - [Bias and variance with mismatched data distributions](#bias-and-variance-with-mismatched-data-distributions)
+    - [Adressing data mismatch](#adressing-data-mismatch)
+  - [F. Learning from multiple tasks](#f-learning-from-multiple-tasks)
+    - [Transfer learning](#transfer-learning)
+    - [Multi-task learning](#multi-task-learning)
+  - [G. End-to-end deep learning](#g-end-to-end-deep-learning)
+
 ## A. Orthogonalization
 
 Identify what to tune to achieve one effect
