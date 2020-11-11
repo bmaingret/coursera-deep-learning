@@ -1,42 +1,41 @@
 # Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
 
-- [Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization](#improving-deep-neural-networks-hyperparameter-tuning-regularization-and-optimization)
-  - [Week 1 - Practical aspects of Deep Learning](#week-1---practical-aspects-of-deep-learning)
-    - [A. Setting up your ML application](#a-setting-up-your-ml-application)
-      - [1. Train/Dev/Test sets](#1-traindevtest-sets)
-      - [2. Bias/Variance](#2-biasvariance)
-      - [3.Basic recipe for ML](#3basic-recipe-for-ml)
-    - [B. Regularizing your NN](#b-regularizing-your-nn)
-      - [1. Logistic regression regularization](#1-logistic-regression-regularization)
-      - [2. Neural Network *L2* regularization](#2-neural-network-l2-regularization)
-      - [3. Dropout regularization](#3-dropout-regularization)
-      - [4. Other regularization methods](#4-other-regularization-methods)
-    - [C. Setting up your optimization problem](#c-setting-up-your-optimization-problem)
-      - [1. Normalizing inputs](#1-normalizing-inputs)
-      - [2. Vanishing/Exploding gradients](#2-vanishingexploding-gradients)
-      - [3. Weight init in DNN](#3-weight-init-in-dnn)
-      - [4. Numerical approximation of gradients](#4-numerical-approximation-of-gradients)
-      - [5. Gradient checking](#5-gradient-checking)
-  - [Week 2 - Optimization algorithms](#week-2---optimization-algorithms)
-    - [A. Mini-batch gradient descent](#a-mini-batch-gradient-descent)
-    - [B. Exponentially weighted averages](#b-exponentially-weighted-averages)
-    - [C.Gradient descent with momentum](#cgradient-descent-with-momentum)
-    - [D.RMSprop (Root Mean Square Propa)](#drmsprop-root-mean-square-propa)
-    - [E. Adam optimization algorithm (ADAptive Moment estimation)](#e-adam-optimization-algorithm-adaptive-moment-estimation)
-    - [E. Local optima in NN](#e-local-optima-in-nn)
-    - [F. Learning rate decay](#f-learning-rate-decay)
-  - [Week 3 - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization](#week-3---improving-deep-neural-networks-hyperparameter-tuning-regularization-and-optimization)
-    - [A. Hyperparameter tuning](#a-hyperparameter-tuning)
-      - [1. Tuning process](#1-tuning-process)
-      - [2. Scale for hyperparameters](#2-scale-for-hyperparameters)
-    - [B. Batch normalization](#b-batch-normalization)
-    - [C. Multi-class classification / Softmax regression](#c-multi-class-classification--softmax-regression)
+- [1. Practical aspects of Deep Learning](#1-practical-aspects-of-deep-learning)
+  - [1.1. A. Setting up your ML application](#11-a-setting-up-your-ml-application)
+    - [1.1.1. Train/Dev/Test sets](#111-traindevtest-sets)
+    - [1.1.2. Bias/Variance](#112-biasvariance)
+    - [1.1.3. 3.Basic recipe for ML](#113-3basic-recipe-for-ml)
+  - [1.2. B. Regularizing your NN](#12-b-regularizing-your-nn)
+    - [1.2.1. Logistic regression regularization](#121-logistic-regression-regularization)
+    - [1.2.2. Neural Network *L2* regularization](#122-neural-network-l2-regularization)
+    - [1.2.3. Dropout regularization](#123-dropout-regularization)
+    - [1.2.4. Other regularization methods](#124-other-regularization-methods)
+  - [1.3. C. Setting up your optimization problem](#13-c-setting-up-your-optimization-problem)
+    - [1.3.1. Normalizing inputs](#131-normalizing-inputs)
+    - [1.3.2. Vanishing/Exploding gradients](#132-vanishingexploding-gradients)
+    - [1.3.3. Weight init in DNN](#133-weight-init-in-dnn)
+    - [1.3.4. Numerical approximation of gradients](#134-numerical-approximation-of-gradients)
+    - [1.3.5. Gradient checking](#135-gradient-checking)
+- [2. Week 2 - Optimization algorithms](#2-week-2---optimization-algorithms)
+  - [2.1. A. Mini-batch gradient descent](#21-a-mini-batch-gradient-descent)
+  - [2.2. B. Exponentially weighted averages](#22-b-exponentially-weighted-averages)
+  - [2.3. C.Gradient descent with momentum](#23-cgradient-descent-with-momentum)
+  - [2.4. D.RMSprop (Root Mean Square Propa)](#24-drmsprop-root-mean-square-propa)
+  - [2.5. E. Adam optimization algorithm (ADAptive Moment estimation)](#25-e-adam-optimization-algorithm-adaptive-moment-estimation)
+  - [2.6. E. Local optima in NN](#26-e-local-optima-in-nn)
+  - [2.7. F. Learning rate decay](#27-f-learning-rate-decay)
+- [3. Week 3 - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization](#3-week-3---improving-deep-neural-networks-hyperparameter-tuning-regularization-and-optimization)
+  - [3.1. A. Hyperparameter tuning](#31-a-hyperparameter-tuning)
+    - [3.1.1. Tuning process](#311-tuning-process)
+    - [3.1.2. Scale for hyperparameters](#312-scale-for-hyperparameters)
+  - [3.2. B. Batch normalization](#32-b-batch-normalization)
+  - [3.3. C. Multi-class classification / Softmax regression](#33-c-multi-class-classification--softmax-regression)
 
-## Week 1 - Practical aspects of Deep Learning
+## 1. Practical aspects of Deep Learning
 
-### A. Setting up your ML application
+### 1.1. A. Setting up your ML application
 
-#### 1. Train/Dev/Test sets
+#### 1.1.1. Train/Dev/Test sets
 
 **Ratios**
 
@@ -53,11 +52,11 @@ Make sure examples come from the same distribution. For instance issues can occu
 
 Can be OK to have only a dev set
 
-#### 2. Bias/Variance
+#### 1.1.2. Bias/Variance
 
 Compare train and dev set errors, taking into account the optimal (Bayes) error.
 
-#### 3.Basic recipe for ML
+#### 1.1.3. 3.Basic recipe for ML
 
 **High Bias**:
 
@@ -75,9 +74,9 @@ In DL era, bias/variance trade-off occurs less as long as you can impact on both
 
 
 
-### B. Regularizing your NN
+### 1.2. B. Regularizing your NN
 
-#### 1. Logistic regression regularization
+#### 1.2.1. Logistic regression regularization
 
 Add a term depending on your parameters to the cost function J.
 
@@ -89,13 +88,13 @@ Usually only regularize W and not b.
 
 It add an additional parameters to your model: lambda
 
-#### 2. Neural Network *L2* regularization
+#### 1.2.2. Neural Network *L2* regularization
 
 Similar to LR, but we use the Frobenius norm (sum of squared terms of the matrix) as a regularization for the cost function.
 
 It leads to *weight decay*: W = W - alpha * lambda/m * W.
 
-#### 3. Dropout regularization
+#### 1.2.3. Dropout regularization
 
 For each training example, selecting a subset of neurons to train.
 
@@ -119,7 +118,7 @@ Spread the weight, and as such shrink the weight similarly to L2, since we cant 
 
 J cost function is no longer well defined and might not got down for each iteration. For dev testing we can turn off dropout and check that the cost function is acting as normal.
 
-#### 4. Other regularization methods
+#### 1.2.4. Other regularization methods
 
 **Data augmentation**
 
@@ -139,17 +138,17 @@ Downside: trying to solve both optimization problem of cost function and minimiz
 
 Upside: with only one run of cost optimization we can then select several W and test it directly versus chossing several lambda for L2 reg and rerunning all the optimization.
 
-### C. Setting up your optimization problem
+### 1.3. C. Setting up your optimization problem
 
-#### 1. Normalizing inputs
+#### 1.3.1. Normalizing inputs
 
 Really useful when you have different scales on your input features, but usually not any harm in doing it.
 
-#### 2. Vanishing/Exploding gradients
+#### 1.3.2. Vanishing/Exploding gradients
 
 If we simplify a very deep network to using activation=identity, b=0, you end up with W**(L-1) and thus with either initial weight >1 or <1 we end up with exponentially large or small activations. Same issue with the gradient making learning very difficult.
 
-#### 3. Weight init in DNN
+#### 1.3.3. Weight init in DNN
 
 To limit the vanishing/exploding gradient we can carefully init the weights.
 
@@ -162,11 +161,11 @@ tanh : var(w_i[l]) = 1/n[l-1] (Xavier initialization)
 Init W[l] = np.random.randn(shape) * np.sqrt(var(w_i[l]))
 
 
-#### 4. Numerical approximation of gradients
+#### 1.3.4. Numerical approximation of gradients
 
 Just use defitinion of derivative: f'(x) = lim(eps->0) ( f(x+eps) - f(x-eps) )/ (2*eps)
 
-#### 5. Gradient checking
+#### 1.3.5. Gradient checking
 
 Can be used for debugging gradient calculation.
 
@@ -183,9 +182,9 @@ Some notes:
 * Run gradient checking also after some training (algo might work well with W close to zero but not so much after).
 
 
-## Week 2 - Optimization algorithms
+## 2. Week 2 - Optimization algorithms
 
-### A. Mini-batch gradient descent
+### 2.1. A. Mini-batch gradient descent
 
 Vectorization allows fo compute on all examples at once (at least mathematically). However you update your weights only once you have processed all examples. This is called 
 batch gradient descent*.
@@ -204,7 +203,7 @@ N.B. If small training set, just use Batch GD
 * size=1: stochastic gradient descent
 * size in between: 2**(6-10) trying to have mini-batch fits in memory
 
-### B. Exponentially weighted averages
+### 2.2. B. Exponentially weighted averages
 
 Definition: v_t = beta*v_t-1 + (&-beta)*x_t, would average roughly over 1/(1-beta) examples
 
@@ -214,7 +213,7 @@ At start, v_0 = 0, and v_1 = 0*beta + (1-beta)*x_1 -> small and wrong.
 
 Correct it calculating: v_t / (1 - beta**t)
 
-### C.Gradient descent with momentum
+### 2.3. C.Gradient descent with momentum
 
 Usually works better than batch GD.
 
@@ -228,7 +227,7 @@ Update W and b with weighted average of dW and dB on iteration t of mini-batch:
 
 In practice we don't use bias correction for GD with momentum.
 
-### D.RMSprop (Root Mean Square Propa)
+### 2.4. D.RMSprop (Root Mean Square Propa)
 
 Calculate the exp. weighted average of the element-wise squared dW and dB, and then update:
 
@@ -240,7 +239,7 @@ Calculate the exp. weighted average of the element-wise squared dW and dB, and t
 
 Allows for smoother updates, since we penalize large gradient, and to use a bit larger learnin rate.
 
-### E. Adam optimization algorithm (ADAptive Moment estimation)
+### 2.5. E. Adam optimization algorithm (ADAptive Moment estimation)
 
 Combine both GD with momentum and RMSprop.
 
@@ -271,7 +270,7 @@ epsilon being a small constant to prevent from dividing by zero
 * beta_2: 0.999
 * epsilon: 10^-8
 
-### E. Local optima in NN
+### 2.6. E. Local optima in NN
 
 Local optima are not much a problem in neural network, because usually the optimization problem is a high dimensional problem, so the probability of having all dimension being convex is very low.
 
@@ -280,7 +279,7 @@ We find more saddle point than local optima.
 
 However **plateaus** can slow down learning.
 
-### F. Learning rate decay
+### 2.7. F. Learning rate decay
 
 **1 epoch**: 1 pass through data (all mini-batches)
 
@@ -290,11 +289,11 @@ Others: alpha = k / sqrt(epoch_num) * alpha_0, or k / sqrt(t (mini-batch)) * alp
 Discrete staircase
 Manual decay: just set it manually
 
-## Week 3 - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+## 3. Week 3 - Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
 
-### A. Hyperparameter tuning
+### 3.1. A. Hyperparameter tuning
 
-#### 1. Tuning process
+#### 3.1.1. Tuning process
 
 First:
 * learning rate
@@ -310,14 +309,14 @@ Third:
 
 **Coarse to fine**: Progressively focus on smaller hyper-parameter value space
 
-#### 2. Scale for hyperparameters
+#### 3.1.2. Scale for hyperparameters
 
 Pay attention to the log of the hyperparameters.
 
 For instance for learning rate, it makes more sense to search over a log scale. 
 It can also be used when searching beta between 0.9 and 0.999 by searching over the log space of 1-beta.
 
-### B. Batch normalization
+### 3.2. B. Batch normalization
 
 In deeper network we might want to normalize activation outputs so ease learning of the weights of the innner layers.
 
@@ -350,7 +349,7 @@ We may have only one example at test time and thus not a complete mini-batch to 
 We use an estimate: exp. weighted average across mini-batches
 
 
-### C. Multi-class classification / Softmax regression
+### 3.3. C. Multi-class classification / Softmax regression
 
 Softmax activation function:
 1. <img src="https://render.githubusercontent.com/render/math?math=t=e^{z^{[L]}}">
